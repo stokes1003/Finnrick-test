@@ -1,54 +1,56 @@
-# React + TypeScript + Vite
+# FinnrickWidget
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + Tailwind embeddable widget for displaying Finnrick product ratings. This widget is designed for easy integration on third-party sites (such as WooCommerce product pages) and faithfully renders the Finnrick brand identity.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Responsive design: desktop and mobile layouts
+- Displays vendor, product, rating, sample count, and last test date
+- Finnrick logo and brand styling (with a mock useEffect for getting the logo included)
+- Mock API: pass a `productId` prop to display different product data
+- Easy to embed and customize
 
-## Expanding the ESLint configuration
+## Usage
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### In Your App
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```tsx
+import { FinnrickWidget } from "./components/FinnrickWidget";
+
+function App() {
+  return <FinnrickWidget productId="123" />;
+}
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Props
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `productId` (string): The ID of the product to display. The widget will look up mock data for this ID.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Mock Data
+
+The widget uses a mock data map in `FinnrickWidget.tsx` to simulate fetching product info from an API. You can add more products to this map for testing.
+
+## Development
+
+1. Install dependencies:
+   ```bash
+   yarn install
+   # or
+   npm install
+   ```
+2. Start the dev server:
+   ```bash
+   yarn dev
+   # or
+   npm run dev
+   ```
+3. Edit the widget or add new mock products as needed.
+
+## Customization
+
+- To use real API data, replace the mock data lookup with an API call.
+- The widget is styled with Tailwind CSS and is easy to restyle or extend.
+
+## License
+
+MIT
